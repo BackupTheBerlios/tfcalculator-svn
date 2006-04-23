@@ -6,7 +6,7 @@ import java.util.Vector;
 public class MultiEvent {
 	private String name;
 	private String category;
-	private boolean gender;
+	private String gender;
 	private Vector eventList;
 	
 	public MultiEvent()
@@ -14,7 +14,7 @@ public class MultiEvent {
 		
 	}
 	
-	public MultiEvent(String name,String category,boolean gender,Vector eventList)
+	public MultiEvent(String name,String category,String gender,Vector eventList)
 	{
 		this.name=name;
 		this.category = category;
@@ -34,10 +34,10 @@ public class MultiEvent {
 	public void setEventList(Vector eventList) {
 		this.eventList = eventList;
 	}
-	public boolean isGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public String getName() {

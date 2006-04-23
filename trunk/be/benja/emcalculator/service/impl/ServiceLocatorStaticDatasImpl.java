@@ -5,38 +5,27 @@ import java.util.Vector;
 import javax.microedition.lcdui.Choice;
 import javax.microedition.lcdui.ChoiceGroup;
 
-import be.benja.emcalculator.model.Event;
+import be.benja.emcalculator.controller.i18n.EMI18N;
+import be.benja.emcalculator.datas.MultiEventDatas;
+import be.benja.emcalculator.datas.impl.MultiEventDatasImpl;
 import be.benja.emcalculator.model.MultiEvent;
-import be.benja.emcalculator.model.formula.Formula;
-import be.benja.emcalculator.model.formula.FormulaRunning;
 import be.benja.emcalculator.service.ServiceLocator;
-import be.benja.util.Float;
 
 public class ServiceLocatorStaticDatasImpl implements ServiceLocator {
 
-	Vector multiEventList = new Vector();
-	public ServiceLocatorStaticDatasImpl()
+	MultiEventDatas multiEventDatas = new MultiEventDatasImpl();
+	EMI18N emi18N;
+	public ServiceLocatorStaticDatasImpl(EMI18N emi18N)
 	{
-		Vector coeff_100m_sen_h = new Vector();
-		coeff_100m_sen_h.addElement(new Float(Float.parse("18",10)));
-		coeff_100m_sen_h.addElement(new Float(Float.parse("1.81",10)));
-		coeff_100m_sen_h.addElement(new Float(Float.parse("25.4347",10)));
-		coeff_100m_sen_h.addElement(new Float(Float.parse("0.5",10)));
-		Formula formula_100m_sen_h = new FormulaRunning("",coeff_100m_sen_h);
-		Event epreuve_100m_sen_h = new Event("100m","sen",true,formula_100m_sen_h);
-		
-		Vector eventList_deca_sen_h = new Vector();
-		eventList_deca_sen_h.addElement(epreuve_100m_sen_h);
-		MultiEvent multiEvent_decathlon_sen_h = new MultiEvent("deca_sen_h","sen",true,eventList_deca_sen_h);
-		multiEventList.addElement(multiEvent_decathlon_sen_h);
+		this.emi18N = emi18N;
+
 	}
 	public ChoiceGroup getCompetitionList() {
 		return null;
 	}
 	
 	public ChoiceGroup getMultiEventList() {
-		return getChoiceGroup(multiEventList);
-	
+		return getChoiceGroup(multiEventDatas.getMultiEventList());
 	}
 	
 	private ChoiceGroup getChoiceGroup(Vector vector)
@@ -46,18 +35,16 @@ public class ServiceLocatorStaticDatasImpl implements ServiceLocator {
 		{
 			if(vector.elementAt(0) instanceof MultiEvent)
 			{
-				ChoiceGroup choiceGroup = new ChoiceGroup("titre",Choice.EXCLUSIVE);
-				//TODO
+				ChoiceGroup choiceGroup = new ChoiceGroup(emi18N.translate("multieventlist_key"),Choice.EXCLUSIVE);
 				for(int i =0; i<vector.size();i++)
 				{
 					MultiEvent multiEvent = (MultiEvent) vector.elementAt(i);
-					choiceGroup.append(multiEvent.getName(),null);
+					choiceGroup.append(emi18N.translate(multiEvent.getName())+" "+emi18N.translate(multiEvent.getCategory())+" "+emi18N.translate(multiEvent.getGender()),null);
 				}
 				return choiceGroup;
 			}
 		}
-		return new ChoiceGroup("titre",ChoiceGroup.IMPLICIT);
-		//TODO
+		return new ChoiceGroup(emi18N.translate("unknownlist_key"),Choice.EXCLUSIVE);
 	}
 
 }

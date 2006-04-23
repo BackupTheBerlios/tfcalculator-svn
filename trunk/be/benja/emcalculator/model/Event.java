@@ -5,14 +5,14 @@ import be.benja.emcalculator.model.formula.Formula;
 public class Event {
 	private String name;
 	private String category;
-	private boolean gender;
+	private String gender;
 	private Formula formula;
 	public Event()
 	{
 		
 	}
 	
-	public Event(String name,String category,boolean gender,Formula formula)
+	public Event(String name,String category,String gender,Formula formula)
 	{
 		this.name=name;
 		this.category=category;
@@ -32,10 +32,10 @@ public class Event {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public boolean isGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public String getName() {

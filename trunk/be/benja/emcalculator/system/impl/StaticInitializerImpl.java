@@ -16,15 +16,12 @@ import be.benja.emcalculator.system.Initializer;
 public class StaticInitializerImpl implements Initializer {
 
 	public Controller init(Display display) {
-		ServiceLocator serviceLocator = loadServiceLocator();
 		EMI18N emi18n = new I18NItems(System.getProperty("microedition.locale"));
+		ServiceLocator serviceLocator = new ServiceLocatorStaticDatasImpl(emi18n);
 		BackingBeanFactory backingBeanFactory = new BackingBeanFactory(serviceLocator,emi18n);
 		Controller controller = new EMCalculatorController(backingBeanFactory,display);
 		return controller;
 	}
 
-	private ServiceLocator loadServiceLocator() {
-		return new ServiceLocatorStaticDatasImpl();
-	}
 
 }
