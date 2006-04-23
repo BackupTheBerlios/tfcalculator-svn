@@ -8,12 +8,14 @@ import javax.microedition.lcdui.ChoiceGroup;
 import be.benja.emcalculator.controller.i18n.EMI18N;
 import be.benja.emcalculator.datas.MultiEventDatas;
 import be.benja.emcalculator.datas.impl.MultiEventDatasImpl;
+import be.benja.emcalculator.model.Competition;
 import be.benja.emcalculator.model.MultiEvent;
 import be.benja.emcalculator.service.ServiceLocator;
 
 public class ServiceLocatorStaticDatasImpl implements ServiceLocator {
 
 	MultiEventDatas multiEventDatas = new MultiEventDatasImpl();
+	Competition currentCompetition;
 	EMI18N emi18N;
 	public ServiceLocatorStaticDatasImpl(EMI18N emi18N)
 	{
@@ -21,7 +23,8 @@ public class ServiceLocatorStaticDatasImpl implements ServiceLocator {
 
 	}
 	public ChoiceGroup getCompetitionList() {
-		return null;
+		return new ChoiceGroup(emi18N.translate("unknownlist_key"),Choice.EXCLUSIVE);
+		//TODO
 	}
 	
 	public ChoiceGroup getMultiEventList() {
@@ -46,5 +49,6 @@ public class ServiceLocatorStaticDatasImpl implements ServiceLocator {
 		}
 		return new ChoiceGroup(emi18N.translate("unknownlist_key"),Choice.EXCLUSIVE);
 	}
+
 
 }

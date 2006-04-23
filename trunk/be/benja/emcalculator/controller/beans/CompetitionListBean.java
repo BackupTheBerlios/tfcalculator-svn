@@ -1,10 +1,10 @@
 package be.benja.emcalculator.controller.beans;
 
-import javax.microedition.lcdui.Choice;
+
 import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Displayable;
-import javax.microedition.lcdui.List;
+
 
 import be.benja.emcalculator.controller.AbstractBackingBean;
 import be.benja.emcalculator.controller.Controller;
@@ -28,8 +28,7 @@ public class CompetitionListBean extends AbstractBackingBean {
 		commandOk = new Command(getEmi18n().translate("KEY_button_ok"),Command.OK,1);
 		commandNew = new Command(getEmi18n().translate("KEY_button_new"),Command.ITEM,2);
 		this.addCommand(commandOk);
-		this.addCommand(commandNew);
-		refresh();		
+		this.addCommand(commandNew);		
 	}
 	
 	public void commandAction(Command command, Displayable display) {
@@ -37,8 +36,7 @@ public class CompetitionListBean extends AbstractBackingBean {
 	}
 
 	public void refresh() {
-		//TODO competitionList  = getServiceLocator().getCompetitionList();		
-		competitionList  = getServiceLocator().getMultiEventList();
+		competitionList  = getServiceLocator().getCompetitionList();		
 	}
 
 }

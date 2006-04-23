@@ -3,6 +3,9 @@ package be.benja.emcalculator.controller;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Display;
 
+import be.benja.emcalculator.controller.beans.CompetitionListBean;
+
+
 
 
 public class EMCalculatorController implements Controller{
@@ -19,10 +22,15 @@ public class EMCalculatorController implements Controller{
 		{
 			display.setCurrent(backingBeanFactory.getBackingBean(ScreenName.SCREEN_1_competitionList));
 		}
-		else if(status==Command.OK)
+		else if(this.display.getCurrent() instanceof CompetitionListBean)
 		{
-			display.setCurrent(backingBeanFactory.getBackingBean(ScreenName.SCREEN_1_competitionList));
+			switch(status)
+			{
+			case Command.ITEM:
+					display.setCurrent(backingBeanFactory.getBackingBean(ScreenName.SCREEN_2_newCompetition));
+			}
 		}
+		
 
 		
 	}

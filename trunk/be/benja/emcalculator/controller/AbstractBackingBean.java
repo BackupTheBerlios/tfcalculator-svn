@@ -1,8 +1,6 @@
 package be.benja.emcalculator.controller;
 
-import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
-import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 
 import be.benja.emcalculator.controller.i18n.EMI18N;
@@ -32,6 +30,8 @@ public abstract class AbstractBackingBean extends Form implements CommandListene
 		super(name);
 		this.serviceLocator = serviceLocator;
 		this.emi18n = emi18n;
+		this.controller = controller;
+		this.setCommandListener(this);
 	}
 	
 	public ServiceLocator getServiceLocator()
