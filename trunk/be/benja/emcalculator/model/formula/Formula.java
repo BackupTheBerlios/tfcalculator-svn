@@ -8,7 +8,13 @@ import be.benja.util.Float;
 public abstract class Formula {
 	Vector coefficentList;
 	String correctInputPattern;
-
+	
+	public Formula(String correctInputPattern , Vector coefficientList)
+	{
+		this.coefficentList = coefficientList;
+		this.correctInputPattern = correctInputPattern;
+	}
+	
 	public String getCorrectInputPattern() {
 		return correctInputPattern;
 	}

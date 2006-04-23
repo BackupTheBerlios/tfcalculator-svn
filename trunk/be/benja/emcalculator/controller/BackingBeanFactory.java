@@ -3,7 +3,6 @@ package be.benja.emcalculator.controller;
 import be.benja.emcalculator.controller.beans.CompetitionListBean;
 import be.benja.emcalculator.controller.i18n.EMI18N;
 import be.benja.emcalculator.service.ServiceLocator;
-import be.benja.microapp.em.Controller;
 
 public class BackingBeanFactory {
 	private AbstractBackingBean SCREEN_1_competitionList;
@@ -32,6 +31,7 @@ public class BackingBeanFactory {
 			if(SCREEN_1_competitionList==null)
 			{
 				SCREEN_1_competitionList = new CompetitionListBean(serviceLocator,emi18n,controller,emi18n.translate("KEY_competition_title"));
+				
 			}
 			SCREEN_1_competitionList.refresh();
 			return SCREEN_1_competitionList;

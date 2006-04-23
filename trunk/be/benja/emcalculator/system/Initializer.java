@@ -1,12 +1,11 @@
 package be.benja.emcalculator.system;
 
-import javax.microedition.lcdui.Form;
+import javax.microedition.lcdui.Display;
+import be.benja.emcalculator.controller.Controller;
 
-import be.benja.emcalculator.controller.AbstractBackingBean;
-import be.benja.emcalculator.service.ServiceLocator;
-import be.benja.microapp.em.Controller;
+
 
 public interface Initializer {
-	public Controller init();
+	public Controller init(Display display);
 
 }

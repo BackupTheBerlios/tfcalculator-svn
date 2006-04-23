@@ -3,13 +3,20 @@ package be.benja.emcalculator.controller.i18n;
 import java.util.Hashtable;
 public class I18NItems implements EMI18N{
 	Hashtable table_FR;
+	Hashtable table_EN;
+	Hashtable table_NL;
 	
 	public static final String LOCALE_FR="FR";
 	public static final String LOCALE_EN="EN";
+	public static final String LOCALE_NL="NL";
 	String locale;
+	
 	public I18NItems(String locale)
 	{
-		
+		setLocale(locale);
+		populate_FR();
+		populate_EN();
+		populate_NL();
 	}
 	
 	public void setLocale(String locale)
@@ -19,25 +26,29 @@ public class I18NItems implements EMI18N{
 	
 	public String translate(String text)
 	{
+		String traducted = null;
 		if(locale.compareTo(LOCALE_FR)==0)
 		{
-		return get_FR(text);
+			traducted = (String)table_FR.get(text);
 		}
-		else return get_FR(text);
-	}
-	
-	public String get_FR(String text)
-	{
-		if(table_FR==null)
+		else if(locale.compareTo(LOCALE_NL)==0)
 		{
-			populate_FR();
+			traducted = (String)table_NL.get(text);
 		}
-		Object result = table_FR.get(text);
-		if(result==null)
+		if(locale.compareTo(LOCALE_EN)==0)
 		{
-			return "PAS_TRADUIT";
+			traducted = (String)table_EN.get(text);
 		}
-		return (String)result;
+		else traducted = (String)table_FR.get(text);
+		
+		if(traducted==null)
+		{
+			return text;
+		}
+		else
+		{
+			return traducted;
+		}
 	}
 	
 	private void populate_FR() {
@@ -45,7 +56,6 @@ public class I18NItems implements EMI18N{
 		
 		table_FR.put("KEY_category","Catégorie");
 		table_FR.put("KEY_continue","Continuer");
-		
 		table_FR.put("100m","100m");
 		table_FR.put("long","longueur");
 		table_FR.put("poids","poids");
@@ -56,6 +66,14 @@ public class I18NItems implements EMI18N{
 		table_FR.put("perch","perche");
 		table_FR.put("jav","javelot");
 		table_FR.put("1500m","1500m");
+	}
+	
+	private void populate_NL() {
+		table_NL = new Hashtable();
+	}
+	
+	private void populate_EN() {
+		table_EN = new Hashtable();
 	}
 
 }

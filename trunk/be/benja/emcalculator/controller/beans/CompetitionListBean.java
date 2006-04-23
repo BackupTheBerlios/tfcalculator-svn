@@ -7,9 +7,10 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.List;
 
 import be.benja.emcalculator.controller.AbstractBackingBean;
+import be.benja.emcalculator.controller.Controller;
 import be.benja.emcalculator.controller.i18n.EMI18N;
 import be.benja.emcalculator.service.ServiceLocator;
-import be.benja.microapp.em.Controller;
+
 
 public class CompetitionListBean extends AbstractBackingBean {
 
@@ -19,7 +20,9 @@ public class CompetitionListBean extends AbstractBackingBean {
 	Command commandNew;
 
 	public CompetitionListBean(ServiceLocator serviceLocator, EMI18N emi18n,Controller controller, String name) {
+
 		super(serviceLocator, emi18n,controller,name);
+		competitionList  = getServiceLocator().getMultiEventList();
 		this.setTitle(getEmi18n().translate("KEY_competition_title"));
 		this.append(competitionList);
 		commandOk = new Command(getEmi18n().translate("KEY_button_ok"),Command.OK,1);
@@ -34,7 +37,8 @@ public class CompetitionListBean extends AbstractBackingBean {
 	}
 
 	public void refresh() {
-		competitionList  = getServiceLocator().getCompetitionList();		
+		//TODO competitionList  = getServiceLocator().getCompetitionList();		
+		competitionList  = getServiceLocator().getMultiEventList();
 	}
 
 }
