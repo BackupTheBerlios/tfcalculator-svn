@@ -1,6 +1,7 @@
 package be.benja.emcalculator.controller;
 
 import java.util.Date;
+import java.util.Vector;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Display;
@@ -18,7 +19,7 @@ import be.benja.emcalculator.service.ControllerService;
 public class EMCalculatorController implements Controller{
 	Display display;
 	DAOService daoService;
-	ControllerService serviceLocator;
+	ControllerService controllerService;
 	BackingBeanFactory backingBeanFactory;
 	
 	public EMCalculatorController(BackingBeanFactory backingBeanFactory,Display display,DAOService daoService,ControllerService serviceLocator)
@@ -27,7 +28,7 @@ public class EMCalculatorController implements Controller{
 		backingBeanFactory.setController(this);
 		this.display = display;
 		this.daoService = daoService;
-		this.serviceLocator = serviceLocator;
+		this.controllerService = serviceLocator;
 	}
 	//TODO sous classe
 	public void control(int status) {
@@ -42,7 +43,7 @@ public class EMCalculatorController implements Controller{
 			{
 			case Command.ITEM:
 				CompetitionNewBean competitionNewBean =(CompetitionNewBean)backingBeanFactory.getBackingBean(ScreenName.SCREEN_2_newCompetition);	
-				competitionNewBean.setMultiEventsList(serviceLocator.getMultiEventListChoiceGroup(daoService.getMultiEventDAOService().loadAll()),serviceLocator.getMultiEventListIDS(daoService.getMultiEventDAOService().loadAll()));
+				competitionNewBean.setMultiEventsList(controllerService.getMultiEventListChoiceGroup(daoService.getMultiEventDAOService().loadAll()),controllerService.getMultiEventListIDS(daoService.getMultiEventDAOService().loadAll()));
 				display.setCurrent(competitionNewBean);
 			}
 		}
@@ -66,7 +67,8 @@ public class EMCalculatorController implements Controller{
 				//VUE
 				CompetitionListBean competitionListBean =(CompetitionListBean)backingBeanFactory.getBackingBean(ScreenName.SCREEN_1_competitionList);
 				System.out.println("before save");
-				competitionListBean.setCompetitionList(serviceLocator.getCompetitionListChoiceGroup(daoService.getCompetitionDAOService().loadAll()));
+				Vector competitionList = daoService.getCompetitionDAOService().loadAll();
+				competitionListBean.setCompetitionList(controllerService.getCompetitionListChoiceGroup(competitionList),controllerService.getCompetitionListIDS(competitionList));
 				System.out.println("after save");
 				display.setCurrent(competitionListBean);
 			}			

@@ -1,6 +1,8 @@
 package be.benja.emcalculator.controller.beans;
 
 
+import java.util.Vector;
+
 import javax.microedition.lcdui.Choice;
 import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
@@ -19,6 +21,7 @@ public class CompetitionListBean extends AbstractBackingBean {
 	ChoiceGroup competitionList;
 	Command commandOk;
 	Command commandNew;
+	Vector competitionListIDS;
 
 	public CompetitionListBean(EMI18N emi18n,Controller controller, String name) {
 
@@ -36,16 +39,19 @@ public class CompetitionListBean extends AbstractBackingBean {
 		getController().control(command.getCommandType());
 	}
 
-	public void refresh() {
-		//competitionList  = getServiceLocator().getCompetitionList();		
-	}
-
 	public ChoiceGroup getCompetitionList() {
 		return competitionList;
 	}
+	
+	public String getSelectedId()
+	{
+		int indice = competitionList.getSelectedIndex();
+		return (String)competitionListIDS.elementAt(indice);
+	}
 
-	public void setCompetitionList(ChoiceGroup competitionList) {
+	public void setCompetitionList(ChoiceGroup competitionList, Vector competitionListIDS) {
 		this.competitionList = competitionList;
+		this.competitionListIDS = competitionListIDS;
 		this.set(0,competitionList);
 	}
 

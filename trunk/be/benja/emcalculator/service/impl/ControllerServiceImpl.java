@@ -30,8 +30,19 @@ public class ControllerServiceImpl implements ControllerService {
 			choiceGroup.append(((Competition)competitionsList.elementAt(i)).getName(),null);
 			i++;
 		}
-		return choiceGroup;
-		
+		return choiceGroup;	
+	}
+	
+	public Vector getCompetitionListIDS(Vector competitionsList)
+	{
+		Vector vector = new Vector();
+		int i =0;
+		while(i<competitionsList.size())
+		{
+			vector.addElement(((Competition)competitionsList.elementAt(i)).getId());
+			i++;
+		}
+		return vector;
 	}
 	
 	public ChoiceGroup getMultiEventListChoiceGroup(Vector multiEventList) {
