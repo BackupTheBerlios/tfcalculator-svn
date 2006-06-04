@@ -4,14 +4,13 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Form;
 
 import be.benja.emcalculator.controller.i18n.EMI18N;
-import be.benja.emcalculator.service.ServiceLocator;
+import be.benja.emcalculator.service.ControllerService;
 
 
 
 
 public abstract class AbstractBackingBean extends Form implements CommandListener{
 
-	private ServiceLocator serviceLocator;
 	private EMI18N emi18n;
 	private Controller controller;
 	public EMI18N getEmi18n() {
@@ -22,24 +21,13 @@ public abstract class AbstractBackingBean extends Form implements CommandListene
 		this.emi18n = emi18n;
 	}
 
-	public void setServiceLocator(ServiceLocator serviceLocator) {
-		this.serviceLocator = serviceLocator;
-	}
-
-	public AbstractBackingBean(ServiceLocator serviceLocator, EMI18N emi18n,Controller controller, String name) {
+	public AbstractBackingBean(EMI18N emi18n,Controller controller, String name) {
 		super(name);
-		this.serviceLocator = serviceLocator;
+
 		this.emi18n = emi18n;
 		this.controller = controller;
 		this.setCommandListener(this);
 	}
-	
-	public ServiceLocator getServiceLocator()
-	{
-		return serviceLocator;
-	}
-	
-	public abstract void refresh();
 
 	public Controller getController() {
 		return controller;

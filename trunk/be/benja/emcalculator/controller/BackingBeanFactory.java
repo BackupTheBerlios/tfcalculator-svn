@@ -3,14 +3,13 @@ package be.benja.emcalculator.controller;
 import be.benja.emcalculator.controller.beans.CompetitionListBean;
 import be.benja.emcalculator.controller.beans.CompetitionNewBean;
 import be.benja.emcalculator.controller.i18n.EMI18N;
-import be.benja.emcalculator.service.ServiceLocator;
+import be.benja.emcalculator.service.ControllerService;
 
 public class BackingBeanFactory {
 	private AbstractBackingBean SCREEN_1_competitionList;
 	private AbstractBackingBean SCREEN_2_newCompetition;
 	private AbstractBackingBean SCREEN_3_competitionInfo;
 	private AbstractBackingBean SCREEN_4_modifyEvent;
-	private ServiceLocator serviceLocator;
 	private EMI18N emi18n;
 	private Controller controller;
 	public Controller getController() {
@@ -19,9 +18,9 @@ public class BackingBeanFactory {
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
-	public BackingBeanFactory(ServiceLocator serviceLocator,EMI18N emi18n)
+	public BackingBeanFactory(EMI18N emi18n)
 	{
-		this.serviceLocator = serviceLocator;
+
 		this.emi18n=emi18n;
 	}
 	public AbstractBackingBean getBackingBean(int id)
@@ -31,7 +30,7 @@ public class BackingBeanFactory {
 		case ScreenName.SCREEN_1_competitionList:
 			if(SCREEN_1_competitionList==null)
 			{
-				SCREEN_1_competitionList = new CompetitionListBean(serviceLocator,emi18n,controller,emi18n.translate("KEY_competition_title"));
+				SCREEN_1_competitionList = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));
 				
 			}
 			SCREEN_1_competitionList.refresh();
@@ -39,14 +38,14 @@ public class BackingBeanFactory {
 		case ScreenName.SCREEN_2_newCompetition:
 			if(SCREEN_2_newCompetition==null)
 			{
-				SCREEN_2_newCompetition = new CompetitionNewBean(serviceLocator,emi18n,controller,emi18n.translate("KEY_competition_title"));
+				SCREEN_2_newCompetition = new CompetitionNewBean(emi18n,controller,emi18n.translate("KEY_competition_title"));
 			}
 			SCREEN_2_newCompetition.refresh();
 			return SCREEN_2_newCompetition;
 		case ScreenName.SCREEN_3_competitionInfo:
 			if(SCREEN_3_competitionInfo==null)
 			{
-				SCREEN_3_competitionInfo = new CompetitionListBean(serviceLocator,emi18n,controller,emi18n.translate("KEY_competition_title"));;
+				SCREEN_3_competitionInfo = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));;
 				//TODO
 			}
 			SCREEN_3_competitionInfo.refresh();
@@ -54,7 +53,7 @@ public class BackingBeanFactory {
 		case ScreenName.SCREEN_4_modifyEvent:
 			if(SCREEN_4_modifyEvent==null)
 			{
-				SCREEN_4_modifyEvent = new CompetitionListBean(serviceLocator,emi18n,controller,emi18n.translate("KEY_competition_title"));;
+				SCREEN_4_modifyEvent = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));;
 				//TODO
 			}	
 			SCREEN_4_modifyEvent.refresh();
@@ -62,7 +61,7 @@ public class BackingBeanFactory {
 		default : 			
 			if(SCREEN_1_competitionList==null)
 		{
-			SCREEN_1_competitionList = new CompetitionListBean(serviceLocator,emi18n,controller,emi18n.translate("KEY_competition_title"));
+			SCREEN_1_competitionList = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));
 		}	
 		return SCREEN_1_competitionList;
 		//TODO exception

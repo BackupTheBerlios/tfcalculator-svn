@@ -1,34 +1,75 @@
 package be.benja.emcalculator.controller;
 
+import java.util.Date;
+
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Display;
 
 import be.benja.emcalculator.controller.beans.CompetitionListBean;
+import be.benja.emcalculator.controller.beans.CompetitionNewBean;
+import be.benja.emcalculator.model.Competition;
+import be.benja.emcalculator.model.MultiEvent;
+import be.benja.emcalculator.model.DAOService.DAOService;
+import be.benja.emcalculator.service.ControllerService;
 
 
 
 
 public class EMCalculatorController implements Controller{
 	Display display;
+	DAOService daoService;
+	ControllerService serviceLocator;
 	BackingBeanFactory backingBeanFactory;
-	public EMCalculatorController(BackingBeanFactory backingBeanFactory,Display display)
+	
+	public EMCalculatorController(BackingBeanFactory backingBeanFactory,Display display,DAOService daoService,ControllerService serviceLocator)
 	{
 		this.backingBeanFactory = backingBeanFactory;
 		backingBeanFactory.setController(this);
 		this.display = display;
+		this.daoService = daoService;
+		this.serviceLocator = serviceLocator;
 	}
+	//TODO sous classe
 	public void control(int status) {
 		if(display.getCurrent()==null)
 		{
-			display.setCurrent(backingBeanFactory.getBackingBean(ScreenName.SCREEN_1_competitionList));
+			CompetitionListBean competitionListBean =(CompetitionListBean)backingBeanFactory.getBackingBean(ScreenName.SCREEN_1_competitionList);
+			display.setCurrent(competitionListBean);
 		}
 		else if(this.display.getCurrent() instanceof CompetitionListBean)
 		{
 			switch(status)
 			{
 			case Command.ITEM:
-					display.setCurrent(backingBeanFactory.getBackingBean(ScreenName.SCREEN_2_newCompetition));
+				CompetitionNewBean competitionNewBean =(CompetitionNewBean)backingBeanFactory.getBackingBean(ScreenName.SCREEN_2_newCompetition);	
+				competitionNewBean.setMultiEventsList(serviceLocator.getMultiEventListChoiceGroup(daoService.getMultiEventDAOService().loadAll()),serviceLocator.getMultiEventListIDS(daoService.getMultiEventDAOService().loadAll()));
+				display.setCurrent(competitionNewBean);
 			}
+		}
+		else if(this.display.getCurrent() instanceof CompetitionNewBean)
+		{
+			switch(status)
+			{
+			case Command.OK:
+				CompetitionNewBean competitionNewBean =(CompetitionNewBean) this.display.getCurrent();
+				//TODO	
+				//MODEL
+				MultiEvent multiEvent = daoService.getMultiEventDAOService().load(competitionNewBean.getSelectedId());
+				Competition competition = new Competition(multiEvent);
+				competition.setAthleteName(competitionNewBean.getAthlete().getString());
+				competition.setDate(new Date());
+				competition.setName(competitionNewBean.getCompetitionName().getString());
+				competition.setPlace(competitionNewBean.getPlace().getString());
+				
+				daoService.getCompetitionDAOService().saveOrUpdate(competition);
+				
+				//VUE
+				CompetitionListBean competitionListBean =(CompetitionListBean)backingBeanFactory.getBackingBean(ScreenName.SCREEN_1_competitionList);
+				System.out.println("before save");
+				competitionListBean.setCompetitionList(serviceLocator.getCompetitionListChoiceGroup(daoService.getCompetitionDAOService().loadAll()));
+				System.out.println("after save");
+				display.setCurrent(competitionListBean);
+			}			
 		}
 		
 
