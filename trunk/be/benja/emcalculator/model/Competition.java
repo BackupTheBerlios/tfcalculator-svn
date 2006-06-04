@@ -12,7 +12,7 @@ public class Competition {
 	private Date date;
 	private String place;
 	private String athleteName;
-	
+	private String id;
 	private MultiEvent multiEvent;
 	private Hashtable resultTable;
 	
@@ -85,6 +85,14 @@ public class Competition {
 
 	public void setResultTable(Hashtable resultTable) {
 		this.resultTable = resultTable;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
