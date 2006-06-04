@@ -33,14 +33,12 @@ public class BackingBeanFactory {
 				SCREEN_1_competitionList = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));
 				
 			}
-			SCREEN_1_competitionList.refresh();
 			return SCREEN_1_competitionList;
 		case ScreenName.SCREEN_2_newCompetition:
 			if(SCREEN_2_newCompetition==null)
 			{
 				SCREEN_2_newCompetition = new CompetitionNewBean(emi18n,controller,emi18n.translate("KEY_competition_title"));
 			}
-			SCREEN_2_newCompetition.refresh();
 			return SCREEN_2_newCompetition;
 		case ScreenName.SCREEN_3_competitionInfo:
 			if(SCREEN_3_competitionInfo==null)
@@ -48,7 +46,6 @@ public class BackingBeanFactory {
 				SCREEN_3_competitionInfo = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));;
 				//TODO
 			}
-			SCREEN_3_competitionInfo.refresh();
 			return SCREEN_3_competitionInfo;
 		case ScreenName.SCREEN_4_modifyEvent:
 			if(SCREEN_4_modifyEvent==null)
@@ -56,7 +53,6 @@ public class BackingBeanFactory {
 				SCREEN_4_modifyEvent = new CompetitionListBean(emi18n,controller,emi18n.translate("KEY_competition_title"));;
 				//TODO
 			}	
-			SCREEN_4_modifyEvent.refresh();
 			return SCREEN_4_modifyEvent;
 		default : 			
 			if(SCREEN_1_competitionList==null)
