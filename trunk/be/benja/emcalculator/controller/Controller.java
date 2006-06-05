@@ -1,5 +1,7 @@
 package be.benja.emcalculator.controller;
 
+
+
 public interface Controller {
-	public void control(int Status);
+	public void control(int action);
 }

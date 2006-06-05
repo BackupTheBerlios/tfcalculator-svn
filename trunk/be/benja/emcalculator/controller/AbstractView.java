@@ -1,27 +1,26 @@
 package be.benja.emcalculator.controller;
 
+import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 
-import be.benja.emcalculator.controller.i18n.EMI18N;
-import be.benja.emcalculator.service.ControllerService;
+import be.benja.emcalculator.controller.i18n.I18NTranslator;
 
 
+public abstract class AbstractView extends Form implements CommandListener{
 
-
-public abstract class AbstractBackingBean extends Form implements CommandListener{
-
-	private EMI18N emi18n;
+	private I18NTranslator emi18n;
 	private Controller controller;
-	public EMI18N getEmi18n() {
+	public I18NTranslator getEmi18n() {
 		return emi18n;
 	}
 
-	public void setEmi18n(EMI18N emi18n) {
+	public void setEmi18n(I18NTranslator emi18n) {
 		this.emi18n = emi18n;
 	}
 
-	public AbstractBackingBean(EMI18N emi18n,Controller controller, String name) {
+	public AbstractView(I18NTranslator emi18n,Controller controller, String name) {
 		super(name);
 
 		this.emi18n = emi18n;
@@ -36,6 +35,8 @@ public abstract class AbstractBackingBean extends Form implements CommandListene
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
+	
+
 	
 
 
