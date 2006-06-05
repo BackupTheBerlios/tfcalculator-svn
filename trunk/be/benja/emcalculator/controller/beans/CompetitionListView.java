@@ -9,13 +9,14 @@ import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Displayable;
 
 
-import be.benja.emcalculator.controller.AbstractBackingBean;
+import be.benja.emcalculator.controller.AbstractView;
 import be.benja.emcalculator.controller.Controller;
-import be.benja.emcalculator.controller.i18n.EMI18N;
-import be.benja.emcalculator.service.ControllerService;
+import be.benja.emcalculator.controller.i18n.I18NKeys;
+import be.benja.emcalculator.controller.i18n.I18NTranslator;
 
 
-public class CompetitionListBean extends AbstractBackingBean {
+
+public class CompetitionListView extends AbstractView {
 
 
 	ChoiceGroup competitionList;
@@ -23,14 +24,14 @@ public class CompetitionListBean extends AbstractBackingBean {
 	Command commandNew;
 	Vector competitionListIDS;
 
-	public CompetitionListBean(EMI18N emi18n,Controller controller, String name) {
+	public CompetitionListView(I18NTranslator emi18n,Controller controller, String name) {
 
 		super(emi18n,controller,name);
-		competitionList  = new ChoiceGroup("",Choice.EXCLUSIVE);
-		this.setTitle(getEmi18n().translate("KEY_competition_title"));
+		competitionList  = new ChoiceGroup(I18NKeys.COMPETITION_LIST,Choice.EXCLUSIVE);
+		this.setTitle(getEmi18n().translate(I18NKeys.COMPETITION_LIST));
 		this.append(competitionList);
-		commandOk = new Command(getEmi18n().translate("KEY_button_ok"),Command.OK,1);
-		commandNew = new Command(getEmi18n().translate("KEY_button_new"),Command.ITEM,2);
+		commandOk = new Command(getEmi18n().translate(I18NKeys.BUTTON_EDIT),Command.OK,1);
+		commandNew = new Command(getEmi18n().translate(I18NKeys.BUTTON_NEW),Command.ITEM,2);
 		this.addCommand(commandOk);
 		this.addCommand(commandNew);		
 	}
@@ -53,6 +54,14 @@ public class CompetitionListBean extends AbstractBackingBean {
 		this.competitionList = competitionList;
 		this.competitionListIDS = competitionListIDS;
 		this.set(0,competitionList);
+	}
+
+	public Vector getCompetitionListIDS() {
+		return competitionListIDS;
+	}
+
+	public void setCompetitionListIDS(Vector competitionListIDS) {
+		this.competitionListIDS = competitionListIDS;
 	}
 
 }
