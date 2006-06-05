@@ -28,25 +28,34 @@ public class CompetitionDAOServiceImpl implements CompetitionDAOService {
 		Vector result = new Vector();
 		try {
 			rs = RecordStore.openRecordStore("CompetitionDAOService",true);
-			RecordEnumeration re = rs.enumerateRecords(null, null, false);
+			RecordEnumeration re = rs.enumerateRecords(null, null, true);
 			System.out.println("records "+re.numRecords());
 			int id=0;
 			while(re.hasNextElement())
 			{
-				byte nextRec[] = re.nextRecord();
+				/**
+				 * Cela semble etre un bug: nextRecordId fait avancer le pointeur
+				 * donc oblige d'appeler rs.getRecord ...
+				 */
+				id = re.nextRecordId();
+				byte nextRec[] = rs.getRecord(id);
 				String recordString = new String(nextRec);
+				System.out.println("record "+recordString);
+				
 				Competition competition = convertRowToCompetition(recordString,String.valueOf(id));
 				result.addElement(competition);
-				id++;
 			}
 			rs.closeRecordStore();
 			return result;
 			
 		} catch (RecordStoreFullException e) {
+			System.out.println(e);
 			return null;
 		} catch (RecordStoreNotFoundException e) {
+			System.out.println(e);
 			return null;
 		} catch (RecordStoreException e) {
+			System.out.println(e);
 			return null;
 		}
 		
@@ -54,6 +63,7 @@ public class CompetitionDAOServiceImpl implements CompetitionDAOService {
 	
 	private Competition convertRowToCompetition(String row,String id)
 	{
+		//TODO tester s'il n'y a pas de separateur dans les mots
 		String name="";
 		Date date=null;
 		String place="";
@@ -117,6 +127,7 @@ public class CompetitionDAOServiceImpl implements CompetitionDAOService {
 			rs = RecordStore.openRecordStore("CompetitionDAOService",true);
 			byte nextRec[] = rs.getRecord(Integer.parseInt(id));
 			String recordString = new String(nextRec);
+			System.out.println(recordString);
 			Competition competition = convertRowToCompetition(recordString,String.valueOf(id));
 			rs.closeRecordStore();
 			return competition;

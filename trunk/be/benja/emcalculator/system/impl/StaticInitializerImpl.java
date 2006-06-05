@@ -5,8 +5,8 @@ import be.benja.emcalculator.controller.BackingBeanFactory;
 import be.benja.emcalculator.controller.Controller;
 import be.benja.emcalculator.controller.EMCalculatorController;
 import be.benja.emcalculator.controller.exceptions.InitializationException;
-import be.benja.emcalculator.controller.i18n.EMI18N;
-import be.benja.emcalculator.controller.i18n.I18NItems;
+import be.benja.emcalculator.controller.i18n.I18NTranslator;
+import be.benja.emcalculator.controller.i18n.I18NTranslatorImpl;
 import be.benja.emcalculator.dao.service.CompetitionDAOServiceImpl;
 import be.benja.emcalculator.dao.service.MultiEventDAOServiceImpl;
 import be.benja.emcalculator.dao.service.staticdatas.MultiEventDatas;
@@ -21,7 +21,7 @@ import be.benja.emcalculator.system.Initializer;
 public class StaticInitializerImpl implements Initializer {
 
 	public Controller init(Display display) throws InitializationException {
-		EMI18N emi18n = new I18NItems(System.getProperty("microedition.locale"));
+		I18NTranslator emi18n = new I18NTranslatorImpl(System.getProperty("microedition.locale"));
 		ControllerService serviceLocator = new ControllerServiceImpl(emi18n);
 		DAOServiceImpl daoService = new DAOServiceImpl();
 		
