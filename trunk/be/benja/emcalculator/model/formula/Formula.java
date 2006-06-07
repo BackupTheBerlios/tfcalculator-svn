@@ -19,6 +19,6 @@ public abstract class Formula {
 		this.coefficentList = coefficentList;
 	}
 	
-	public abstract Integer calculate(Integer value);
+	public abstract Integer calculate(String value);
 
 }

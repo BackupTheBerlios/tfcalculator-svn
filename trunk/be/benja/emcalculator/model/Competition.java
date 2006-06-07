@@ -28,7 +28,7 @@ public class Competition {
 		}
 	}
 	
-	public void addResult(Event event,Integer performance) throws InvalidPatternFormulaException
+	public void addResult(Event event,String performance) throws InvalidPatternFormulaException
 	{
 		Result result = (Result)resultTable.get(event);
 		result.setScore(event.getFormula().calculate(performance));

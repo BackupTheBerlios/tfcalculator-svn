@@ -11,7 +11,7 @@ public class FormulaJump extends Formula {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer calculate(Integer value)
+	public Integer calculate(String value)
 			 {
 		// TODO Auto-generated method stub
 		return null;

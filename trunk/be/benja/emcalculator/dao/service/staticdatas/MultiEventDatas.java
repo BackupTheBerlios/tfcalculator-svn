@@ -39,10 +39,10 @@ public class MultiEventDatas {
 	private void init_Formulas()
 	{
 		Vector coeff_100m_h = new Vector();
-		coeff_100m_h.addElement(new Float(Float.parse("18",10)));
-		coeff_100m_h.addElement(new Float(Float.parse("1.81",10)));
-		coeff_100m_h.addElement(new Float(Float.parse("25.4347",10)));
-		coeff_100m_h.addElement(new Float(Float.parse("0.5",10)));
+		coeff_100m_h.addElement("25.4347");
+		coeff_100m_h.addElement("18");
+		coeff_100m_h.addElement("1.81");
+		coeff_100m_h.addElement("0.5");
 		Formula formula_100m_sen_h = new FormulaRunning(coeff_100m_h);
 		
 		formulaList.insertElementAt(formula_100m_sen_h,DataConstants.FORMULA_100M_H);
