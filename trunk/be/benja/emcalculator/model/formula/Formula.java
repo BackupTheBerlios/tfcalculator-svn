@@ -2,25 +2,13 @@ package be.benja.emcalculator.model.formula;
 
 import java.util.Vector;
 
-import be.benja.emcalculator.exception.InvalidPatternFormulaException;
-import be.benja.util.Float;
 
 public abstract class Formula {
 	Vector coefficentList;
-	String correctInputPattern;
 	
-	public Formula(String correctInputPattern , Vector coefficientList)
+	public Formula(Vector coefficientList)
 	{
 		this.coefficentList = coefficientList;
-		this.correctInputPattern = correctInputPattern;
-	}
-	
-	public String getCorrectInputPattern() {
-		return correctInputPattern;
-	}
-
-	public void setCorrectInputPattern(String correctInputPattern) {
-		this.correctInputPattern = correctInputPattern;
 	}
 
 	public Vector getCoefficentList() {
@@ -31,6 +19,6 @@ public abstract class Formula {
 		this.coefficentList = coefficentList;
 	}
 	
-	public abstract Integer calculate(String value) throws InvalidPatternFormulaException;
+	public abstract Integer calculate(Integer value);
 
 }

@@ -7,12 +7,12 @@ import be.benja.emcalculator.exception.InvalidPatternFormulaException;
 public class FormulaJump extends Formula {
 
 	public FormulaJump(String correctInputPattern, Vector coefficientList) {
-		super(correctInputPattern, coefficientList);
+		super(coefficientList);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer calculate(String value)
-			throws InvalidPatternFormulaException {
+	public Integer calculate(Integer value)
+			 {
 		// TODO Auto-generated method stub
 		return null;
 	}

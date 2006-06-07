@@ -43,7 +43,7 @@ public class MultiEventDatas {
 		coeff_100m_h.addElement(new Float(Float.parse("1.81",10)));
 		coeff_100m_h.addElement(new Float(Float.parse("25.4347",10)));
 		coeff_100m_h.addElement(new Float(Float.parse("0.5",10)));
-		Formula formula_100m_sen_h = new FormulaRunning("",coeff_100m_h);
+		Formula formula_100m_sen_h = new FormulaRunning(coeff_100m_h);
 		
 		formulaList.insertElementAt(formula_100m_sen_h,DataConstants.FORMULA_100M_H);
 		

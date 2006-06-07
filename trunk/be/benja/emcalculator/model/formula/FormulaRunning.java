@@ -6,12 +6,11 @@ import be.benja.emcalculator.exception.InvalidPatternFormulaException;
 
 public class FormulaRunning extends Formula {
 
-	public FormulaRunning(String correctInputPattern, Vector coefficientList) {
-		super(correctInputPattern, coefficientList);
+	public FormulaRunning(Vector coefficientList) {
+		super(coefficientList);
 	}
 
-	public Integer calculate(String value)
-			throws InvalidPatternFormulaException {
+	public Integer calculate(Integer value){
 		// TODO Auto-generated method stub
 		return null;
 	}

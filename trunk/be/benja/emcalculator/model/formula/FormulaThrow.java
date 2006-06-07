@@ -2,17 +2,16 @@ package be.benja.emcalculator.model.formula;
 
 import java.util.Vector;
 
-import be.benja.emcalculator.exception.InvalidPatternFormulaException;
 
 public class FormulaThrow extends Formula {
 
 	public FormulaThrow(String correctInputPattern, Vector coefficientList) {
-		super(correctInputPattern, coefficientList);
+		super(coefficientList);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer calculate(String value)
-			throws InvalidPatternFormulaException {
+	public Integer calculate(Integer value)
+			{
 		// TODO Auto-generated method stub
 		return null;
 	}

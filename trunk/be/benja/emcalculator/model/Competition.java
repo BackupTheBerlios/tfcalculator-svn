@@ -28,10 +28,10 @@ public class Competition {
 		}
 	}
 	
-	public void addResult(Event event,String resultText) throws InvalidPatternFormulaException
+	public void addResult(Event event,Integer performance) throws InvalidPatternFormulaException
 	{
 		Result result = (Result)resultTable.get(event);
-		result.setScore(event.getFormula().calculate(resultText));
+		result.setScore(event.getFormula().calculate(performance));
 	}
 	
 	public Result getResult(Event event)
